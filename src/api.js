@@ -24,18 +24,13 @@ export function createMerchant(body) {
     },
     body: JSON.stringify(body),
   })
-    .then(handleHttpError)
-    .then(() => {
-      const response = Object.assign({}, body);
-      response.bids = [];
-      response.id = btoa(Math.floor((Math.random() * 1E12)).toString());
-      return response;
-    })
+    .then(handleHttpError);
 }
 
-export function updateMerchant(is) {
+export function updateMerchant(id, body) {
   return fetch(`${baseUrl}/recipes/${id}`, {
     method: 'PATCH',
+    body: JSON.stringify(body),
   })
     .then(handleHttpError);
 }
